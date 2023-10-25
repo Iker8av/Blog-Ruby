@@ -1,0 +1,16 @@
+
+<%= stylesheet_link_tag "application" %>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var something = document.getElementById("button-test");
+    if (something) {
+      something.style.cursor = "pointer";
+      something.onclick = function () {
+      };
+    }
+  });
+</script>
+<div>
+    <img class="kanto-img" src="https://i.redd.it/kq8mzkvpkjy51.png"/>
+    <div class="pos-abs" id="button-test"/>
+</div>
