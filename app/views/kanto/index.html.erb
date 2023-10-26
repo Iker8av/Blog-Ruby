@@ -16,4 +16,9 @@
 </div>
 <div>
   <p><%= @region_data["name"] %></p>
+  <p><%= @location_data["name"] %></p>
+  <% @test.each do |key, value| %>
+  <p><%= value["name"] %></p>
+  <p><%= value["weight"] %></p>
+  <% end %>
 </div>
