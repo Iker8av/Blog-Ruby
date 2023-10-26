@@ -1,0 +1,3 @@
+all_poke.each do |pokemon|
+  puts "Name: #{pokemon.name}"
+end
