@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "application" %>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var popup = document.getElementById("popup");
+    var close = document.getElementById("close");
+    close.style.cursor = "pointer";
+    close.onclick = function () {
+      popup.style.display = "none";
+    };
+  });
+</script>
+<div class="popup">
+  <div class="wrapper">
+    <img class="pokemon-img" src="" alt="pokemon img" />
+    <div class="content">
+      <div class="header">
+        <h2 id="pokemon-name">{Pokemon name}</h2>
+        <p id="close">Close</p>
+      </div>
+      <h3>Stats</h3>
+      <ul>
+        <li>Type:</li>
+        <li>HP:</li>
+        <li>Attack:</li>
+        <li>Defense:</li>
+      </ul>
+    </div>
+  </div>
+</div>

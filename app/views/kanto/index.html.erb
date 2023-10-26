@@ -1,16 +1,474 @@
-
 <%= stylesheet_link_tag "application" %>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    var something = document.getElementById("button-test");
-    if (something) {
-      something.style.cursor = "pointer";
-      something.onclick = function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+    var routeOptions = document.querySelectorAll(".route-option"); // Select all elements with the class "route-option"
+    routeOptions.forEach(function (element) {
+      element.style.cursor = "pointer";
+
+      element.onclick = function () {
+        popup.style.display = "flex";
+        var parameter = element.getAttribute("data-parameter");
+        var pokemonName = document.getElementById("pokemon-name");
+        pokemonName.innerHTML = "Pokemon: " + parameter;
       };
-    }
+
+      element.addEventListener("mouseover", function () {
+        var parameter = element.getAttribute("data-parameter");
+        var placeName = document.getElementById("place-name");
+        placeName.innerHTML = parameter;
+      });
+    });
   });
 </script>
+<div class="popup-wrapper" id="popup"><%= render 'popup' %></div>
+<div class="info-wrapper">
+  <div class="info" id="place-name">Place</div>
+</div>
 <div>
-    <img class="kanto-img" src="https://i.redd.it/kq8mzkvpkjy51.png"/>
-    <div class="pos-abs" id="button-test"/>
+  <div class="map-buttons">
+    <svg
+      viewBox="0 0 8534 6034"
+      style="
+        fill-rule: evenodd;
+        clip-rule: evenodd;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 1.5;
+      "
+    >
+      <g transform="matrix(4.16667,0,0,4.16667,0,0)">
+        <path
+          onmouseover="onHoverHandler('Place')"
+          class="route-option"
+          data-parameter="1"
+          d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+        />
+        <g transform="matrix(1,0,0,1,248.584,120.237)">
+          <path
+            class="route-option"
+            data-parameter="2"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,248.584,469.264)">
+          <path
+            class="route-option"
+            data-parameter="3"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,248.584,753.137)">
+          <path
+            class="route-option"
+            data-parameter="4"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,210.807,1138.07)">
+          <path
+            class="route-option"
+            data-parameter="5"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,772.851,961.813)">
+          <path
+            class="route-option"
+            data-parameter="6"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,1088.81,589.258)">
+          <path
+            class="route-option"
+            data-parameter="7"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,728.906,266.045)">
+          <path
+            class="route-option"
+            data-parameter="8"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,1088.81,319.03)">
+          <path
+            class="route-option"
+            data-parameter="9"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,1546.09,323.669)">
+          <path
+            class="route-option"
+            data-parameter="10"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g transform="matrix(1,0,0,1,1088.81,67.5863)">
+          <path
+            class="route-option"
+            data-parameter="11"
+            d="M225.173,193.398L255.48,162.978L285.57,193.398L255.48,223.223L225.173,193.398Z"
+          />
+        </g>
+        <g
+          id="_23"
+          serif:id="23"
+          transform="matrix(0.882031,0,0,0.957508,23.7175,20.4915)"
+        >
+          <ellipse
+            onmouseover="onHoverHandler('This')"
+            onmouseout="onHoverHandler('Bye')"
+            class="route-option"
+            data-parameter="23"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_22"
+          serif:id="22"
+          transform="matrix(0.882031,0,0,0.957508,107.796,139.743)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="22"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_2"
+          serif:id="2"
+          transform="matrix(0.882031,0,0,0.957508,270.786,28.0763)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="2"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_1"
+          serif:id="1"
+          transform="matrix(0.882031,0,0,0.957508,272.769,274.261)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="1"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_3"
+          serif:id="3"
+          transform="matrix(0.882031,0,0,0.957508,515.908,-213.046)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="3"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_17"
+          serif:id="17"
+          transform="matrix(0.882031,0,0,0.957508,505.68,183.942)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="17"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_21"
+          serif:id="21"
+          transform="matrix(0.882031,0,0,0.957508,234.017,651.778)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="21"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_18"
+          serif:id="18"
+          transform="matrix(0.882031,0,0,0.957508,656.949,627.281)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="18"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_19"
+          serif:id="19"
+          transform="matrix(0.882031,0,0,0.957508,801.575,706.668)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="19"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_20"
+          serif:id="20"
+          transform="matrix(0.882031,0,0,0.957508,697.344,819.733)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="20"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_15"
+          serif:id="15"
+          transform="matrix(0.882031,0,0,0.957508,964.542,629.278)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="15"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_14"
+          serif:id="14"
+          transform="matrix(0.882031,0,0,0.957508,1224.25,575.951)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="14"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_13"
+          serif:id="13"
+          transform="matrix(0.882031,0,0,0.957508,1417.6,481.756)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="13"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_11"
+          serif:id="11"
+          transform="matrix(0.882031,0,0,0.957508,1403.85,262.34)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="11"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_12"
+          serif:id="12"
+          transform="matrix(0.882031,0,0,0.957508,1626.66,140.17)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="12"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_6"
+          serif:id="6"
+          transform="matrix(0.882031,0,0,0.957508,1112.91,69.0126)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="6"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_8"
+          serif:id="8"
+          transform="matrix(0.882031,0,0,0.957508,1322.68,-14.0253)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="8"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_10"
+          serif:id="10"
+          transform="matrix(0.882031,0,0,0.957508,1566.04,-117.711)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="10"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_9"
+          serif:id="9"
+          transform="matrix(0.882031,0,0,0.957508,1364.23,-272.136)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="9"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_5"
+          serif:id="5"
+          transform="matrix(0.882031,0,0,0.957508,1113.65,-176.525)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="5"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_4"
+          serif:id="4"
+          transform="matrix(0.882031,0,0,0.957508,899.571,-265.557)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="4"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_24"
+          serif:id="24"
+          transform="matrix(0.882031,0,0,0.957508,1110.72,-370.929)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="24"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_25"
+          serif:id="25"
+          transform="matrix(0.882031,0,0,0.957508,1229.1,-447.928)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="24"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_7"
+          serif:id="7"
+          transform="matrix(0.882031,0,0,0.957508,988.465,-15.6805)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="7"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+        <g
+          id="_16"
+          serif:id="16"
+          transform="matrix(0.882031,0,0,0.957508,602.736,-72.7113)"
+        >
+          <ellipse
+            class="route-option"
+            data-parameter="16"
+            cx="262.841"
+            cy="549.761"
+            rx="25.509"
+            ry="23.498"
+          />
+        </g>
+      </g>
+    </svg>
+  </div>
+  <img class="kanto-img" src="https://i.redd.it/kq8mzkvpkjy51.png" />
 </div>
