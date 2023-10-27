@@ -1,8 +1,6 @@
 <%= stylesheet_link_tag "application" %>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    var popup = document.getElementById("popup");
-    popup.style.display = "none";
 
     let locationData;
 
@@ -27,13 +25,74 @@
       });
     });
 
-    // async function getLocation(parameter) {
-    //   const response = await fetch(`https://pokeapi.co/api/v2/location/${parameter}`);
-    //   return response.json();
-    // }
+    var popupWrapper = document.getElementById("popup-wrapper");
+    popupWrapper.style.display = "none";
+    var pokemonCards = document.querySelectorAll(".pokemon-card");
+
+    pokemonCards.forEach(function (element) {
+      var name = element.getAttribute("data-parameter");
+
+      element.onclick = function () {
+        popupWrapper.style.display = "flex";
+        var pokemonNameTag = document.getElementById("pokemon-name");
+        var popup = document.getElementById("popup");
+
+        fetch(`/pokemon/${name}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            popup.innerHTML = `
+                <div class="wrapper">
+                    <img class="pokemon-img" src="${
+                      data.pokemon.sprites.front_default
+                    }" alt="pokemon img" />
+                    <div class="content">
+                        <div class="header">
+                            <h2 id="pokemon-name">${data.pokemon.name}</h2>
+                            <p id="close">Close</p>
+                        </div>
+                        <h3>Stats</h3>
+                        <ul>
+                            <li>Type: ${data.pokemon.types.map((type) => {
+                              return type.type.name + " ";
+                            })}</li>
+                            <li>HP: ${data.pokemon.stats[0].base_stat}</li>
+                            <li>Attack: ${data.pokemon.stats[1].base_stat}</li>
+                            <li>Defense: ${data.pokemon.stats[2].base_stat}</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            var closeButton = document.getElementById("close");
+            closeButton.onclick = function () {
+              popupWrapper.style.display = "none";
+            };
+          });
+      };
+    });
   });
 </script>
-<div class="popup-wrapper" id="popup"><%= render 'popup', name: @name %></div>
+<div class="popup-wrapper" id="popup-wrapper">
+  <div class="popup" id="popup">
+    <div class="wrapper">
+      <img class="pokemon-img" src="" alt="pokemon img" />
+      <div class="content">
+        <div class="header">
+          <h2 id="pokemon-name">"Null"</h2>
+          <p id="close">Close</p>
+        </div>
+        <h3>Stats</h3>
+        <ul>
+          <li>Type:</li>
+          <li>HP:</li>
+          <li>Attack:</li>
+          <li>Defense:</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="info-wrapper">
   <div class="info" id="place-name">Place</div>
 </div>
@@ -480,6 +539,14 @@
   </div>
   <img class="kanto-img" src="https://i.redd.it/kq8mzkvpkjy51.png" />
 </div>
-<div>
-  
+<div class="pokedex">
+  <h2>Pokedex</h2>
+  <div class="pokedexGrid-wrapper">
+    <% @pokemons.each_with_index do |pokemon| %>
+    <div class="pokemon-card" data-parameter="<%= pokemon['name']%>">
+      <img src="<%= pokemon['sprite'] %>" />
+      <p><%= pokemon['name'] %></p>
+    </div>
+    <% end %>
+  </div>
 </div>

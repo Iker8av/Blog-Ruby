@@ -1,4 +1,89 @@
-<h1><%= @current_location['name'] %></h1>
-<ul>
-    <li></li>
-</ul>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var popupWrapper = document.getElementById("popup-wrapper");
+    popupWrapper.style.display = "none";
+    var pokemonCards = document.querySelectorAll(".pokemon-card");
+
+    pokemonCards.forEach(function (element) {
+      var name = element.getAttribute("data-parameter");
+
+      element.onclick = function () {
+        popupWrapper.style.display = "flex";
+        var pokemonNameTag = document.getElementById("pokemon-name");
+        var popup = document.getElementById("popup");
+
+        fetch(`/pokemon/${name}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            popup.innerHTML = `
+                <div class="wrapper">
+                    <img class="pokemon-img" src="${
+                      data.pokemon.sprites.front_default
+                    }" alt="pokemon img" />
+                    <div class="content">
+                        <div class="header">
+                            <h2 id="pokemon-name">${data.pokemon.name}</h2>
+                            <p id="close">Close</p>
+                        </div>
+                        <h3>Stats</h3>
+                        <ul>
+                            <li>Type: ${data.pokemon.types.map((type) => {
+                              return type.type.name + " ";
+                            })}</li>
+                            <li>HP: ${data.pokemon.stats[0].base_stat}</li>
+                            <li>Attack: ${data.pokemon.stats[1].base_stat}</li>
+                            <li>Defense: ${data.pokemon.stats[2].base_stat}</li>
+                        </ul>
+                    </div>
+                </div>
+                <button onclick="adoptPokemon('${name}')">Adopt</button>
+            `;
+
+            var closeButton = document.getElementById("close");
+            closeButton.onclick = function () {
+              popupWrapper.style.display = "none";
+            };
+          });
+      };
+    });
+  });
+
+  const adoptPokemon = (name) => {
+    var popupWrapper = document.getElementById("popup-wrapper");
+        fetch(`/adopt/${name}`); 
+        popupWrapper.style.display = "none";
+    }
+</script>
+<div class="popup-wrapper" id="popup-wrapper">
+  <div class="popup" id="popup">
+    <div class="wrapper">
+      <img class="pokemon-img" src="" alt="pokemon img" />
+      <div class="content">
+        <div class="header">
+          <h2 id="pokemon-name">"Null"</h2>
+          <p id="close">Close</p>
+        </div>
+        <h3>Stats</h3>
+        <ul>
+          <li>Type:</li>
+          <li>HP:</li>
+          <li>Attack:</li>
+          <li>Defense:</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="location-body">
+  <h1><%= @current_location['name'] %></h1>
+  <div class="grid-wrapper">
+    <% @current_pokemons.each_with_index do |pokemon, index| %>
+    <div class="pokemon-card" data-parameter="<%= pokemon[0]%>">
+      <img src="<%= pokemon[1]['sprites']['front_default'] %>" />
+      <p><%= pokemon[0] %></p>
+    </div>
+    <% end %>
+  </div>
+  <button onclick="window.location = /kanto/">Go back</button>
+</div>

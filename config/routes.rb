@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/kanto", to: "kanto#index"
   get "/kanto/:name", to: 'kanto#location'
   get 'location/:name', to: 'kanto#get_location'
+  get 'pokemon/:name', to: 'kanto#get_pokemon_info'
+  get 'adopt/:name', to: 'kanto#push_pokemon'
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
