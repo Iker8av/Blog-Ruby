@@ -14,20 +14,17 @@ class KantoController < ApplicationController
   end
 
   def location
-    name = params[:name] # Get the n
+    name = params[:name]
     api_service = PokeApi.new
-    @current_location = api_service.get_location(name) # Fetch the data based on the name
-    # @name = @current_location['name']
-    # render json: { location: @current_location } # Return the data as JSON
-    # @current_location = get_location(name)
+    @current_location = api_service.get_location(name)
     @current_pokemons = get_pokemons name
   end
 
   def get_location
-    name = params[:name] # Get the n
+    name = params[:name]
     api_service = PokeApi.new
-    @current_location = api_service.get_location(name) # Fetch the data based on the name
-    render json: { location: @current_location } # Return the data as JSON
+    @current_location = api_service.get_location(name)
+    render json: { location: @current_location }
   end
 
   def get_pokemons(name)
@@ -36,10 +33,10 @@ class KantoController < ApplicationController
   end
 
   def get_pokemon_info
-    name = params[:name] # Get the n
+    name = params[:name]
     api_service = PokeApi.new
       @pokemon = api_service.get_pokemon_info(name)
-      render json: { pokemon: @pokemon } # Return the data as JSON
+      render json: { pokemon: @pokemon }
   end
 
     def push_pokemon
