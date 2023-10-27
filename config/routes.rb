@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "kanto#index"
   get "/kanto", to: "kanto#index"
   get "/kanto/:name", to: 'kanto#location'
+  get 'locationName/:id', to: 'kanto#get_name_location'
   get 'location/:name', to: 'kanto#get_location'
   get 'pokemon/:name', to: 'kanto#get_pokemon_info'
   get 'adopt/:name', to: 'kanto#push_pokemon'

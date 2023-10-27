@@ -14,13 +14,12 @@
       };
 
       element.addEventListener("mouseover", function () {
-        fetch(`/location/${parameter}`)
+        fetch(`/locationName/${parameter}`)
           .then(response => response.json())
           .then(data => {
             console.log(data)
-            locationData = data.location;
             var locationDiv = document.getElementById("place-name");
-            locationDiv.innerHTML = locationData.name;
+            locationDiv.innerHTML = data.location;
           });
       });
     });

@@ -15,9 +15,33 @@ class KantoController < ApplicationController
 
   def location
     name = params[:name]
-    api_service = PokeApi.new
-    @current_location = api_service.get_location(name)
-    @current_pokemons = get_pokemons name
+      api_service = PokeApi.new
+      locationData = api_service.get_location(name)
+      @current_location = locationData['name']
+      @current_pokemons = get_pokemons name
+
+  end
+
+  def get_name_location
+    id = params[:id]
+
+    location = Location.find_by(id_location: id)
+
+    if location
+      @current_location = location.name
+    else
+      api_service = PokeApi.new
+      locationData = api_service.get_location(id)
+      @current_location = locationData['name']
+
+      new_location = Location.new(name: @current_location, id_location: id)
+      new_location.save
+
+      @current_pokemons = get_pokemons id
+
+    end
+
+    render json: { location: @current_location }
   end
 
   def get_location
